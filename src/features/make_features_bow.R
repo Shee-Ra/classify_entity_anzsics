@@ -21,7 +21,7 @@ make_features_bow = function(tr = input_dataframe
                   , ngrams = input_ngram_len # build n-grams
                   ) 
   
-  # create a document-feature matrix
+  # create a document-feature matrix (dfm)
   # play with dfms here: https://tutorials.quanteda.io/basic-operations/dfm/dfm/
   tr_dfm <- dfm(tr_tok
                 , tolower = T                   # make all words lowercase
@@ -51,8 +51,7 @@ make_features_bow = function(tr = input_dataframe
   # bind dfm to original data
   xy = tr %>% 
     bind_cols(dfm_df) %>% 
-    clean_names() %>% 
-    prepare_for_modeling()
+    clean_names()
     
   # create test / train sets
   samp = rsample::initial_split(data = xy

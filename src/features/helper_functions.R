@@ -13,7 +13,7 @@ prepare_for_modeling = function(in_data ){
               , funs(sprintf('x_%s', .)))
 }
 
-prepare_for_modeling_we = function(in_data ){
+prepare_for_modeling_we = function(in_data){
   
   in_data %>% 
     # remove unneeded columns

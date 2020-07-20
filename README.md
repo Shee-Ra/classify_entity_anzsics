@@ -12,12 +12,6 @@ Direct link to the data is [here](https://data.gov.au/dataset/ds-melbourne-https
 
 More information on ANZSICs (Australian and New Zealand Standard Industrial Classification) see Wikipedia or the ABS.
 
-### Getting started
-
-1. Download the public dataset [here](https://data.gov.au/dataset/ds-melbourne-https%3A%2F%2Fdata.melbourne.vic.gov.au%2Fapi%2Fviews%2Fbs7n-5veh/distribution/dist-melbourne-https%3A%2F%2Fdata.melbourne.vic.gov.au%2Fapi%2Fviews%2Fbs7n-5veh-0/?q=anzsic).
-
-2. Save these data files in the `data/raw` folder. 
-
 ### Data bias
 
 TBC

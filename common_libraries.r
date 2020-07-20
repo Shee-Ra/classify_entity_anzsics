@@ -13,4 +13,5 @@ p_load(cutpointr # metric / evaluation
        , tictoc    # timing
        , tidyverse
        , XML
+       , neuralnet # neural net
        )

@@ -1,11 +1,18 @@
 ---
 title: "Exploring Melbourne business establishments"
-output: html_notebook
+output: github_document
 ---
+
 
 ```{r load libraries, include=FALSE}
 library(here)
-here("common_libraries.r")
+library(pacman)
+p_load(ggplot2
+       , janitor
+       , magrittr
+       , quanteda
+       , tidyverse
+       )
 ```
 
 ## Labelled data

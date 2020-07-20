@@ -1,0 +1,58 @@
+---
+title: "Exploring Melbourne business establishments"
+output: html_notebook
+---
+
+```{r load libraries, include=FALSE}
+library(here)
+here("common_libraries.r")
+```
+
+## Labelled data
+
+This data associates a trading name with an ANZIC, and is collected as part of the City of Melbourne's Census of Land Use and Employment (CLUE) for the period 2002-2018.
+
+```{r read in labelled data , include=FALSE}
+# read in data
+data_tr = read.csv(here("data","raw","Business_establishments__with_trading_name_and_industry_classification.csv"))
+```
+
+Here is a sample of the data from the Melbourne business survey:
+```{r top 5 rows}
+data_tr %>% as_tibble %>% head(5)
+```
+
+Close to 20K businesses are surveyed a year.
+```{r}
+data_tr %>% group_by(Census.year) %>% tally %>% arrange(-Census.year)
+```
+
+Inspecting a few businesses we can see a number of businesses were surveyed multiple times (over time or across many sites). There's also a large proportion of `Vacant` or `vacant` properties.
+```{r}
+data_tr %>% group_by(Trading.name) %>% tally %>% arrange(-n) %>% head(5)
+```
+
+Bigger organisations with with multiple sites can have different ANZSICs depending on what type of business they run on the site.
+```{r}
+data_tr %>% filter(Trading.name == "The University of Melbourne") %>% group_by(Industry..ANZSIC4..code, Industry..ANZSIC4..description) %>% tally %>% arrange(-n)
+```
+
+What is the count of unique trading names by geography:
+```{r}
+data_tr %>% 
+  select(Trading.name,CLUE.small.area) %>% 
+  unique() %>% 
+  group_by(CLUE.small.area) %>% 
+  tally %>% 
+  arrange(-n)
+```
+
+
+From inspecting the raw data, initial data cleaning actions need to:
+
+* Filter out `Vacant`, `Vacant Land` and `vacant` trading names (they are NULLs).
+* If a business name has more than one ANZSIC, assign the highest counted ANZSIC to that business name
+
+
+
+
